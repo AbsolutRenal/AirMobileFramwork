@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<debug debugMod="false" useStats="true" />
+	
+	<!--
+	@attribute supported : list of supported languages separated by a "/"
+		=> ex.: fr/en/de
+	-->
+	<languages default="fr" supported="fr" />
+	<paths sharedPath="" countryPath="languages/%LANGUAGE%/" />
+	<app width="1280" height="800" />
+	
+	<!--
+	Available values :
+		- preload
+		- cross
+		- reverse
+	(see com.app.transitions.TransitionType) 
+	-->
+	<transitions type="preload" useBitmap="true" />
+	
+	<!--
+	On exit : kill app or just sleep 
+	-->
+	<onExit sleep="true" />
+	
+	<globalAssets>
+		<swf id="library" path="sharedPath" src="appLibrary.swf" />
+		<swf id="fonts" path="countryPath" src="fonts/fonts.swf" />
+		<css id="css" path="countryPath" src="css/styles.css" />
+		<xml id="datas" path="countryPath" src="xml/datas.xml" />
+	</globalAssets>
+	
+	<!--
+	@attribute default : specify the default page to be displayed first
+	
+	@attribute cache : specify wether the pages have to be cached or not (in order to use the BACK button from the phone to reload the previous page
+	
+	@attribute maxCached : the maximum number of pages that can be cached
+	
+	@attribute loaderPage : default loader for page loading (with fully qualified className extending fwk.utils.loaders.AbstractLoaderPage, with an associated MovieClip defined in Main.fla)	
+		- ex.: <pages default="" cache="true" maxCached="10" loaderPage="com.utils.loaders.CustomLoader">
+	-->
+	<pages default="" cache="true" maxCached="10" loaderPage="">
+		<!--
+		@attribute depth : parentContainer depth (default : middle)
+		Available values :
+			- top
+			- middle
+			- bottom
+		(See fwk.app.vars.DepthContainer
+		and method depthContainer(depth:String):Sprite on fwk.app.MainBase)
+		
+		@attribute cache : specify wether the page has to be cached (if cache attribute != false in the pages node) or not
+		
+		@attribute loaderPage : a custom loader for that page (with fully qualified className extending fwk.utils.loaders.AbstractLoaderPage, with an associated MovieClip defined in Main.fla)	
+			- ex.: <PageClass loaderPage="com.utils.loaders.CustomLoader">
+		-->
+		
+		<!-- #PAGES# -->
+	</pages>
+</config>

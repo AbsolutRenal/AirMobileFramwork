@@ -1,0 +1,26 @@
+/*
+[FONTS] :: fontName: [object ArialNarrow_Bold] Arial Narrow
+[FONTS] :: fontName: [object HelveticaNeueTT_CondensedBold] Helvetica Neue Condensed Bold
+[FONTS] :: fontName: [object Frutiger_66BoldItalic] Frutiger 45 Light
+[FONTS] :: fontName: [object Frutiger_55Roman] Frutiger 55 Roman
+[FONTS] :: fontName: [object Frutiger_46LightItalic] Frutiger 45 Light
+[FONTS] :: fontName: [object Frutiger_67BoldCondensed] Frutiger 47LightCn
+[FONTS] :: fontName: [object ArialNarrow_BoldItalic] Arial Narrow
+[FONTS] :: fontName: [object MyriadPro_Italic] Myriad Pro
+[FONTS] :: fontName: [object Frutiger_57Condensed] Frutiger 57 Condensed
+[FONTS] :: fontName: [object Frutiger_56Italic] Frutiger 55 Roman
+[FONTS] :: fontName: [object Franchise_Regular] Franchise Bold
+[FONTS] :: fontName: [object MyriadPro_Regular] Myriad Pro
+*/
+
+.standardText{
+	font-family: Arial Narrow;
+	font-size: 14pt;
+	color: #afaffa;
+	letterSpacing: -.2;
+	mrm_autoSize: true;
+	mrm_multiline: false;
+	mrm_wordWrap: false;
+	verticalAlign: false;
+	text-align: left;
+}
