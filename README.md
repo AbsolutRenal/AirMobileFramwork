@@ -9,10 +9,10 @@ WHAT DOES IT CONTAINS AND WHAT DOES IT PROVIDES YOU :
 ========================================================================================
 This framework also provide a Adobe Flash extension to manage/create your projects quickly :
 . It will generate your project tree including framework sources.
-. It will even make it easier to add new Pages/Modules to your project by adding nodes to application's xml that describe how's your app is working.
-. It will also declare your pages' classes as needed in com.app.Main.as :: function registerPagesClass()
+. It will even make it easier to add new Pages/Modules to your project by adding nodes to application's xml that describe how's your app is working..
+. It will also declare your pages' classes as needed in com.app.Main.as :: function registerPagesClass().
 . Finally, it will create your pages' classes extending the right needed classes.
-. Moreover, extension is made to help you import the project in FDT
+. Moreover, extension is made to help you import the project in FDT.
 
 ========================================================================================
 WHAT IF YOU DON'T USE THE EXTENSION :
