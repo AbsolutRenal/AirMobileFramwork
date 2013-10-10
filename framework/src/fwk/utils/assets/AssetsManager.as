@@ -24,7 +24,7 @@ package fwk.utils.assets {
 	import fwk.utils.loaders.LoaderXML;
 	import fwk.utils.loaders.events.LoaderEvents;
 
-	import com.app.SiteApp;
+	import com.app.Config;
 
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
@@ -201,7 +201,7 @@ package fwk.utils.assets {
 			for(var i:int = 0; i < nbAssets; i++){
 				url = "";
 				if(assetsXML.children()[i].@path != "" && assetsXML.children()[i].@path != undefined){
-					url = SiteApp.main[assetsXML.children()[i].@path];
+					url = Config.main[assetsXML.children()[i].@path];
 				}					
 				url += assetsXML.children()[i].@src;
 				
@@ -277,7 +277,7 @@ package fwk.utils.assets {
 				}
 				dependencies = dependenciesStr.split(",");
 				for(var n:int = 0; n < dependencies.length; n++){
-					var tmpXML:XML = SiteApp.main.getDependencyAssets(dependencies[n]);
+					var tmpXML:XML = Config.main.getDependencyAssets(dependencies[n]);
 					
 					if(tmpXML != null){
 						var formatedNode:String;
@@ -311,7 +311,7 @@ package fwk.utils.assets {
 				for(var i:int = 0; i < nbAssets; i++){
 					url = "";
 					if(assetsXML.children()[i].@path != "" && assetsXML.children()[i].@path != undefined){
-						url = SiteApp.main[assetsXML.children()[i].@path];
+						url = Config.main[assetsXML.children()[i].@path];
 					}					
 					url += assetsXML.children()[i].@src;
 					

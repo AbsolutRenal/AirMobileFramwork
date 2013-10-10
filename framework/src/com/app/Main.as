@@ -28,7 +28,7 @@ package com.app {
 		
 		public function Main()
 		{
-			SiteApp.main = this;
+			Config.main = this;
 			super();
 		}
 		

@@ -17,7 +17,7 @@ package com.app {
 	/**
 	 * @author renaud.cousin
 	 */
-	public class SiteApp {
+	public class Config {
 		public static var main:IMain;
 		public static var supportedLanguages:Array = [];
 		public static var defaultLanguage:String;

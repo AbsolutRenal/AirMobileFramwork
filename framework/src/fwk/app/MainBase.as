@@ -30,7 +30,7 @@ package fwk.app {
 
 	import net.hires.debug.Stats;
 
-	import com.app.SiteApp;
+	import com.app.Config;
 
 	import flash.desktop.NativeApplication;
 	import flash.desktop.SystemIdleMode;
@@ -193,7 +193,7 @@ package fwk.app {
 		}
 
 		private function onPageDisplayComplete(event:PageEvents):void {
-			SiteApp.firstLoad = false;
+			Config.firstLoad = false;
 			
 			if(_transitionsType == TransitionType.REVERSE && _previousPage != null)
 				_previousPage.closePage();
@@ -352,25 +352,25 @@ package fwk.app {
 		}
 		
 		protected function configureGlobalVars():void{
-			SiteApp.defaultLanguage = config.languages.@default;
-			SiteApp.supportedLanguages = String(config.languages.@supported).split("/");
-			SiteApp.language = (SiteApp.supportedLanguages.indexOf(Capabilities.language) != -1)? Capabilities.language : SiteApp.defaultLanguage ;
+			Config.defaultLanguage = config.languages.@default;
+			Config.supportedLanguages = String(config.languages.@supported).split("/");
+			Config.language = (Config.supportedLanguages.indexOf(Capabilities.language) != -1)? Capabilities.language : Config.defaultLanguage ;
 			
 			_sharedPath = config.paths.@sharedPath;
-			_countryPath = String(config.paths.@countryPath).replace("%LANGUAGE%", SiteApp.language);
+			_countryPath = String(config.paths.@countryPath).replace("%LANGUAGE%", Config.language);
 			
-			SiteApp.debugMod = parseBoolean(config.debug.@debugMod);
+			Config.debugMod = parseBoolean(config.debug.@debugMod);
 			trace("set useStats:", config.debug.@useStats, parseBoolean(config.debug.@useStats));
-			SiteApp.useStats = parseBoolean(config.debug.@useStats);
+			Config.useStats = parseBoolean(config.debug.@useStats);
 			
 			if(config.app.length() == 1){
-				SiteApp.APP_WIDTH = parseInt(config.app.@width);
-				SiteApp.APP_HEIGHT = parseInt(config.app.@height);
+				Config.APP_WIDTH = parseInt(config.app.@width);
+				Config.APP_HEIGHT = parseInt(config.app.@height);
 			}
 			
 			if(config.transitions.length() == 1){
 				_transitionsType = config.transitions.@type;
-				SiteApp.useBitmapTransition = parseBoolean(config.transitions.@useBitmap);
+				Config.useBitmapTransition = parseBoolean(config.transitions.@useBitmap);
 			}
 			
 			if(config.onExit.length() == 1)
@@ -413,8 +413,8 @@ package fwk.app {
 		}
 
 		protected function setDebug():void {
-			trace("useStats:", SiteApp.useStats);
-			if(SiteApp.useStats){
+			trace("useStats:", Config.useStats);
+			if(Config.useStats){
 				if(stats == null){
 					trace("addStats();");
 					stats = new Stats();
@@ -422,7 +422,7 @@ package fwk.app {
 				}
 			}
 			
-			if(SiteApp.debugMod){
+			if(Config.debugMod){
 				if(debug == null){
 					debug = DebugPanel.getInstance();
 					debugContainer.addChild(debug);
@@ -567,13 +567,13 @@ package fwk.app {
 			pagesCached = new Vector.<AbstractPage>();
 			
 			trace("++++++ SWITCH LANGUAGE ++++++", language);
-			if(SiteApp.supportedLanguages.indexOf(language) != -1){
-				SiteApp.language = language;
-				_countryPath = String(config.paths.@countryPath).replace("%LANGUAGE%", SiteApp.language);
+			if(Config.supportedLanguages.indexOf(language) != -1){
+				Config.language = language;
+				_countryPath = String(config.paths.@countryPath).replace("%LANGUAGE%", Config.language);
 				loadAssets();
 			} else {
 				DebugPanel.trace("[ERROR] :: language " + language + " not supported", "#FF0000", true);
-				throw new Error("LANGUAGE " + language + " NOT SUPPORTED => SWITCHED TO " + SiteApp.defaultLanguage);
+				throw new Error("LANGUAGE " + language + " NOT SUPPORTED => SWITCHED TO " + Config.defaultLanguage);
 			}
 		}
 		

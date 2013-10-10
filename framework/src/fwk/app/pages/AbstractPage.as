@@ -17,7 +17,7 @@ package fwk.app.pages{
 	import fwk.app.pages.events.PageEvents;
 	import fwk.utils.bitmap.convertAsBitmap;
 
-	import com.app.SiteApp;
+	import com.app.Config;
 	import com.greensock.TweenNano;
 	import com.greensock.easing.Expo;
 
@@ -58,9 +58,9 @@ package fwk.app.pages{
 		
 		private function displayDependencies():void{
 			for(var i:int = 0; i < dependencies.length; i++){
-				if(SiteApp.main.previousPage != null && SiteApp.main.previousPage.dependencies.indexOf(dependencies[i]) == -1){
+				if(Config.main.previousPage != null && Config.main.previousPage.dependencies.indexOf(dependencies[i]) == -1){
 					dependencies[i].display();
-				} else if(SiteApp.main.previousPage == null){
+				} else if(Config.main.previousPage == null){
 					dependencies[i].display();
 				}
 			}
@@ -68,7 +68,7 @@ package fwk.app.pages{
 		
 		private function closeDependencies():void{
 			for(var i:int = 0; i < dependencies.length; i++){
-				if(SiteApp.main.currentPage.dependencies.indexOf(dependencies[i]) == -1){
+				if(Config.main.currentPage.dependencies.indexOf(dependencies[i]) == -1){
 					dependencies[i].close();
 				}
 			}
@@ -91,7 +91,7 @@ package fwk.app.pages{
 		
 		protected function closeComplete():void{
 			if(transitionBmp != null){
-				SiteApp.main.depthContainer(_parentContainerDepth).removeChild(transitionBmp);
+				Config.main.depthContainer(_parentContainerDepth).removeChild(transitionBmp);
 				transitionBmp.bitmapData.dispose();
 				transitionBmp = null;
 			}
@@ -112,25 +112,25 @@ package fwk.app.pages{
 		protected function display():void{
 			cacheAsBitmapMatrix = this.transform.concatenatedMatrix;
 			
-			if(SiteApp.useBitmapTransition){
+			if(Config.useBitmapTransition){
 				setBitmapTransition();
 				destDisplay = transitionBmp.x;
 				
-				if(SiteApp.firstLoad){
+				if(Config.firstLoad){
 					TweenNano.to(transitionBmp, TRANSITION_DURATION, {alpha:1, onComplete:displayComplete});
 				} else {
 					alpha = 1;
 					transitionBmp.alpha = 1;
-					transitionBmp.x = destDisplay + SiteApp.APP_WIDTH;
+					transitionBmp.x = destDisplay + Config.APP_WIDTH;
 					TweenNano.to(transitionBmp, TRANSITION_DURATION, {x:destDisplay, ease:TRANSTION_EASE, onComplete:displayComplete});
 				}
 			} else {
 				destDisplay = x;
-				if(SiteApp.firstLoad){
+				if(Config.firstLoad){
 					TweenNano.to(this, TRANSITION_DURATION, {alpha:1, onComplete:displayComplete});
 				} else {
 					alpha = 1;
-					x = destDisplay + SiteApp.APP_WIDTH;
+					x = destDisplay + Config.APP_WIDTH;
 					TweenNano.to(this, TRANSITION_DURATION, {x:destDisplay, ease:TRANSTION_EASE, onComplete:displayComplete});
 				}
 			}
@@ -139,11 +139,11 @@ package fwk.app.pages{
 		protected function close():void{
 			if(transitionBmp != null){
 				transitionBmp.visible = true;
-				TweenNano.to(transitionBmp, TRANSITION_DURATION, {x:destDisplay - SiteApp.APP_WIDTH, ease:TRANSTION_EASE, onComplete:closeComplete});
+				TweenNano.to(transitionBmp, TRANSITION_DURATION, {x:destDisplay - Config.APP_WIDTH, ease:TRANSTION_EASE, onComplete:closeComplete});
 				visible = false;
-				SiteApp.main.depthContainer(parentContainerDepth).removeChild(this);
+				Config.main.depthContainer(parentContainerDepth).removeChild(this);
 			} else {
-				TweenNano.to(this, TRANSITION_DURATION, {x:destDisplay - SiteApp.APP_WIDTH, ease:TRANSTION_EASE, onComplete:closeComplete});
+				TweenNano.to(this, TRANSITION_DURATION, {x:destDisplay - Config.APP_WIDTH, ease:TRANSTION_EASE, onComplete:closeComplete});
 			}
 		}
 		
@@ -156,23 +156,23 @@ package fwk.app.pages{
 			addChild(origin);
 			
 			alpha = 1;
-			transitionBmp = convertAsBitmap(this, (SiteApp.APP_WIDTH < width) || (SiteApp.APP_HEIGHT < height));
+			transitionBmp = convertAsBitmap(this, (Config.APP_WIDTH < width) || (Config.APP_HEIGHT < height));
 			trace("------------------", this, x, y, "<:> [BMP]", transitionBmp.x, transitionBmp.y);
 			transitionBmp.alpha = 0;
-			SiteApp.main.depthContainer(_parentContainerDepth).addChild(transitionBmp);
+			Config.main.depthContainer(_parentContainerDepth).addChild(transitionBmp);
 			visible = false;
 		}
 		
 		protected function refreshTransitionBitmap():void {
 			if (transitionBmp != null) {
-				if (SiteApp.main.depthContainer(_parentContainerDepth).contains(transitionBmp))
-					SiteApp.main.depthContainer(_parentContainerDepth).removeChild(transitionBmp);
+				if (Config.main.depthContainer(_parentContainerDepth).contains(transitionBmp))
+					Config.main.depthContainer(_parentContainerDepth).removeChild(transitionBmp);
 
 				transitionBmp = null;
 			}
 
 			transitionBmp = convertAsBitmap(this);
-			SiteApp.main.depthContainer(_parentContainerDepth).addChild(transitionBmp);
+			Config.main.depthContainer(_parentContainerDepth).addChild(transitionBmp);
 			alpha = 0;
 		}
 		
@@ -211,10 +211,10 @@ package fwk.app.pages{
 		public function reinit():void{
 			skipInit = true;
 			alpha = 0;
-			x += SiteApp.APP_WIDTH;
+			x += Config.APP_WIDTH;
 			
 			for(var i:int = 0; i < dependencies.length; i++){
-				if(SiteApp.main.previousPage.dependencies.indexOf(dependencies[i]) == -1){
+				if(Config.main.previousPage.dependencies.indexOf(dependencies[i]) == -1){
 					dependencies[i].reinit();
 				}
 			}
