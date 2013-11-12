@@ -13,7 +13,7 @@
  * This framework also include some third party free Classes like Greensocks Tweening engine, Text and Fonts manager, Audio manager, Stats manager (by mrdoob)
 **/
 
-package com.renal.utils.types.number{
+package fwk.utils.types.number{
 	/**
 	 * @author rcousin
 	 */
