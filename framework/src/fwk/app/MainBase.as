@@ -366,6 +366,9 @@ package fwk.app {
 			if(config.app.length() == 1){
 				Config.APP_WIDTH = parseInt(config.app.@width);
 				Config.APP_HEIGHT = parseInt(config.app.@height);
+			} else {
+				Config.APP_WIDTH = stage.stageWidth;
+				Config.APP_HEIGHT = stage.stageHeight;
 			}
 			
 			if(config.transitions.length() == 1){
