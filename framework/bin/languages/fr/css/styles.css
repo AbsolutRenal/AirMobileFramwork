@@ -10,7 +10,10 @@ AVAILABLE FONTS :
 	mrm_autoSize: true;
 	mrm_multiline: false;
 	mrm_wordWrap: false;
+	mrm_leading: 2;
+	letterSpacing: .5;
 	text-align: center;
 	mrm_gridFitType: "pixel";
 	verticalAlign: true;
+	horizontalAlign: true;
 }
