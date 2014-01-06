@@ -130,7 +130,7 @@ package fwk.debug{
 		//----------------------------------------------------------------------
 		
 		private function init():void{
-			iosMod = (Capabilities.os.indexOf("iPhone OS") != -1);
+			iosMod = (Capabilities.os.indexOf("iPhone OS") != -1 || Capabilities.os.indexOf("Mac OS") != -1 || Capabilities.os.indexOf("Windows") != -1);
 			slidingPanel = new SlidingPanel(this);
 			this.parent.addChildAt(slidingPanel, this.parent.getChildIndex(this));
 			

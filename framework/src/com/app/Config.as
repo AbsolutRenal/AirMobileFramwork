@@ -22,6 +22,7 @@ package com.app {
 		public static var supportedLanguages:Array = [];
 		public static var defaultLanguage:String;
 		public static var language:String;
+		public static var initialFps:int = -1;
 		
 		public static var firstLoad:Boolean = true;
 		public static var APP_WIDTH:int = NaN;

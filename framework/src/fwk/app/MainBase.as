@@ -104,14 +104,21 @@ package fwk.app {
 		// ----------------------------------------------------------------------
 		
 		protected function onAppDesactivate(event:Event):void {
-			DebugPanel.trace("[DEACTIVATE]", "#FF33FF");
+			if(stage != null){
+				Config.initialFps = stage.frameRate;
+				stage.frameRate = 0;
+				DebugPanel.trace("[DEACTIVATE] :: fps=" + stage.frameRate, "#FF33FF");
+			}
 			
 			if(!runInBackground)
 				killApp();
 		}
 
 		protected function onAppActivate(event:Event):void {
-			DebugPanel.trace("[ACTIVATE]", "#FF33FF");
+			if(stage != null && Config.initialFps > -1){
+				stage.frameRate = Config.initialFps;
+				DebugPanel.trace("[ACTIVATE] :: fps=" + stage.frameRate, "#FF33FF");
+			}
 		}
 
 		private function onConfigLoaded(event:LoaderEvents):void {
