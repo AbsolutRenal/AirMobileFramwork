@@ -19,7 +19,7 @@ package fwk.utils.types.url{
 	 */
 	public function getCurrentUrl(removeEndSlash:Boolean = true):String{
 		var url:String = ExternalInterface.call("eval", "window.location.href");
-		if(removeEndSlash && currentUrl.charAt(url.length -1) == "/")
+		if(removeEndSlash && url.charAt(url.length -1) == "/")
 			url = url.substr(0, url.length -1);
 		return url;
 	}
